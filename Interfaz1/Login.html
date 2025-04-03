@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Konrad Lorenz</title>
-    <link rel="stylesheet" href="login.css">
-    <script defer src="script.js"></script>
-</head>
-<body>
-    <div class="container">
-        <img src="logo.png" alt="Konrad Lorenz" class="logo">
-        <h2>Crea una cuenta</h2>
-        <p>Entra tu gmail para disfrutar de la app!</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Konrad Lorenz - Login</title>
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body>
+        <div class="background-overlay"></div>
         
-        <input type="email" id="email" placeholder="email@konradlorenz.edu.co">
-        <button onclick="continuar()">Continuar</button>
+        <div class="status-bar">
+            <div>9:41</div>
+            <div>
+                <span style="margin-right: 5px;">●</span>
+                <span style="margin-right: 5px;">●</span>
+                <span>●</span>
+            </div>
+        </div>
         
-        <div class="divider">or</div>
-        <button class="microsoft" onclick="continuarConMicrosoft()">Continuar con Microsoft</button>
+        <div class="logo-container">
+            <div style="text-align: center;">
+                <div style="background-color: white; padding: 5px; border-radius: 5px; display: inline-block;">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div style="width: 30px; height: 60px; background-color: purple;"></div>
+                        <div style="width: 30px; height: 60px; background-color: lime;"></div>
+                    </div>
+                    <div style="font-size: 12px; font-weight: bold; color: #333; text-align: center; margin-top: 5px;">
+                        KONRAD<br>LORENZ
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <p class="terms">By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+        <div class="login-container">
+            <h2 class="login-title">Inicio de sesión</h2>
+            <p class="login-subtitle">Entra a la App Konrad Lorenz</p>
+            
+            <input type="text" class="input-field" placeholder="Correo electrónico institucional">
+            <input type="password" class="input-field" placeholder="Contraseña">
+            
+            <button class="continue-btn">Continuar</button>
+            
+            <button class="microsoft-btn">
+                <div class="microsoft-icon"></div>
+                Continuar con Microsoft
+            </button>
+        </div>
         
-        <p class="login">¿Ya tienes una cuenta? <a href="#">Inicia sesión</a></p>
-    </div>
-</body>
-</html>
+        <div class="footer">
+            ¿Olvidaste tu contraseña?
+        </div>
+    </body>
+    </html>
