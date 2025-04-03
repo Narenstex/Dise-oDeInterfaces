@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: url('background.jpg') no-repeat center center/cover;
+    color: white;
+}
+
+.container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.microsoft {
+    background: white;
+    color: black;
+}
+
+.divider {
+    margin: 10px 0;
+}
+
+.terms, .login {
+    font-size: 12px;
+}
