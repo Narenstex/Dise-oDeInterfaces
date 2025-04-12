@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klapp - Perfil de Usuario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+        }
+        
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            margin: 0 auto;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #c94b8e, #7d4b9e, #4d6eb7);
+        }
+        
+        /* Status bar styling */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 15px;
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #fff;
+        }
+        
+        .status-bar-right {
+            display: flex;
+            gap: 5px;
+        }
+        
+        /* Header styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f8f8f8;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .menu-icon {
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .header-icon.right {
+            color: #ff2d55;
+            font-size: 20px;
+        }
+        
+        /* Profile container */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #000;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .avatar-icon {
+            color: white;
+            font-size: 40px;
+        }
+        
+        /* Info card */
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            width: 100%;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .info-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faculty-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .faculty-details {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .user-name {
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-badge {
+            background-color: #28a745;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        /* Generate QR Button */
+        .generate-button {
+            background-color: #000;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: none;
+        }
+        
+        /* QR Code */
+        .qr-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status bar -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>•••</div>
+                <div>▲</div>
+                <div>■■</div>
+            </div>
+        </div>
+        
+        <!-- Header -->
+        <div class="header">
+            <div class="menu-icon">≡</div>
+            <div class="header-title">Klapp</div>
+            <div class="header-icon right">⊕</div>
+        </div>
+        
+        <!-- Profile -->
+        <div class="profile-container">
+            <div class="profile-avatar">
+                <div class="avatar-icon">◯</div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-title">Informacion Personal</div>
+                
+                <div class="info-item">
+                    <div class="faculty-name">Facultad</div>
+                    <div class="faculty-details">Ingeniería - Semestre 4</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="user-name">
+                        <span>Yalaim Ariza Jimenez</span>
+                        <span class="status-badge">Activo</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="generate-button">Generar QR</button>
+            
+            <div class="qr-container">
+                <svg class="qr-code" viewBox="0 0 100 100">
+                    <!-- QR Code simplified representation -->
+                    <rect x="10" y="10" width="80" height="80" fill="white" stroke="black" stroke-width="1"/>
+                    <g fill="black">
+                        <!-- QR code pattern - simplified representation -->
+                        <rect x="15" y="15" width="10" height="10"/>
+                        <rect x="15" y="30" width="10" height="10"/>
+                        <rect x="15" y="45" width="10" height="10"/>
+                        <rect x="15" y="60" width="10" height="10"/>
+                        <rect x="15" y="75" width="10" height="10"/>
+                        
+                        <rect x="30" y="15" width="10" height="10"/>
+                        <rect x="30" y="45" width="10" height="10"/>
+                        <rect x="30" y="75" width="10" height="10"/>
+                        
+                        <rect x="45" y="15" width="10" height="10"/>
+                        <rect x="45" y="30" width="10" height="10"/>
+                        <rect x="45" y="60" width="10" height="10"/>
+                        <rect x="45" y="75" width="10" height="10"/>
+                        
+                        <rect x="60" y="15" width="10" height="10"/>
+                        <rect x="60" y="45" width="10" height="10"/>
+                        <rect x="60" y="60" width="10" height="10"/>
+                        
+                        <rect x="75" y="15" width="10" height="10"/>
+                        <rect x="75" y="30" width="10" height="10"/>
+                        <rect x="75" y="45" width="10" height="10"/>
+                        <rect x="75" y="60" width="10" height="10"/>
+                        <rect x="75" y="75" width="10" height="10"/>
+                        
+                        <!-- Corner squares -->
+                        <rect x="15" y="15" width="20" height="20"/>
+                        <rect x="15" y="65" width="20" height="20"/>
+                        <rect x="65" y="15" width="20" height="20"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
