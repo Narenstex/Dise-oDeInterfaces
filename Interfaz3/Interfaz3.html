@@ -1,291 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Interfaz Espacial</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+    <link rel="stylesheet" href="Interfaz3.css"/>
+    <link rel="stylesheet" href="https://www.flaticon.es/icono-gratis/letra-k_17146319?term=3d+k&page=1&position=16&origin=tag&related_id=17146319">
 
-        body {
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(to bottom, #000 30%, #000080 80%, #0000ff);
-        }
-
-        .status-bar {
-            height: 44px;
-            padding: 0 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            position: relative;
-            z-index: 10;
-        }
-
-        .time {
-            font-weight: bold;
-        }
-
-        .status-icons {
-            display: flex;
-            gap: 5px;
-        }
-
-        .earth-container {
-            position: absolute;
-            bottom: -200px;
-            left: 0;
-            width: 100%;
-            height: 500px;
-            background: radial-gradient(ellipse at center, rgba(0,0,255,0.3) 0%, rgba(0,0,150,0.1) 70%, transparent 100%);
-            border-radius: 50% 50% 0 0;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .earth {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .city-lights {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/api/placeholder/400/200');
-            background-size: cover;
-            opacity: 0.8;
-        }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .logo-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 70px;
-            background: rgba(200, 200, 200, 0.3);
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-        }
-
-        .logo {
-            width: 80%;
-            height: 80%;
-            display: flex;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .logo-red {
-            flex: 1;
-            background: #ff355e;
-        }
-
-        .logo-yellow {
-            flex: 1;
-            background: #b5e51d;
-        }
-
-        .logo-k {
-            position: absolute;
-            font-size: 50px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-        }
-
-        .icon-row {
-            position: absolute;
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            z-index: 2;
-        }
-
-        .icon-row.top {
-            top: 100px;
-        }
-
-        .icon-row.bottom {
-            bottom: 60px;
-        }
-
-        .icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 150, 255, 0.7);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #00f;
-            font-size: 24px;
-            box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .bright-star {
-            position: absolute;
-            background: white;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        }
-
-        .settings {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 24px;
-            height: 24px;
-            color: white;
-            z-index: 5;
-        }
-    </style>
 </head>
-<body>
-    <div class="status-bar">
-        <div class="time">9:41</div>
-        <div class="status-icons">
+
+    <body>
+        <!-- Barra de estado -->
+        <div class="status-bar">
+          <div class="time">9:41</div>
+          <div class="status-icons">
             <span>●●●</span>
             <span>📶</span>
             <span>🔋</span>
+          </div>
         </div>
-    </div>
-
-    <div class="settings">⚙️</div>
-
-    <div class="stars" id="stars"></div>
-
-    <div class="icon-row top">
-        <div class="icon">📅</div>
-        <div class="icon">📝</div>
-    </div>
-
-    <div class="logo-container">
-        <div class="logo">
-            <div class="logo-red"></div>
-            <div class="logo-yellow"></div>
+      
+        <!-- Botón de configuración -->
+        <div class="settings" id="btn-settings">⚙️</div>
+      
+        <!-- Estrellas -->
+        <div class="stars" id="stars"></div>
+      
+        <!-- Íconos en las 4 esquinas -->
+        <div class="icon" id="icon-top-left">
+          <img src="iconos/calendarN.png" alt="Calendario" class="icon-img" />
         </div>
-        <div class="logo-k">K</div>
-    </div>
-
-    <div class="icon-row bottom">
-        <div class="icon">👥</div>
-        <div class="icon">📊</div>
-    </div>
-
-    <div class="earth-container">
-        <div class="earth">
+        <div class="icon" id="icon-top-right">
+          <img src="iconos/REGISTRON.png" alt="Registro" class="icon-img" />
+        </div>
+        <div class="icon" id="icon-bottom-left">
+          <img src="iconos/debate.png" alt="Grupos" class="icon-img" />
+        </div>
+        <div class="icon" id="icon-bottom-right">
+          <img src="iconos/calculatorN.png" alt="Calculadora" class="icon-img" />
+        </div>
+      
+        <!-- Logo central -->
+        <div class="logo-k">
+          <img src="k.png" alt="Logo letra K" class="logo-image" />
+        </div>
+      
+        <!-- Tierra -->
+        <div class="earth-container">
+          <div class="earth">
             <div class="city-lights"></div>
+          </div>
         </div>
-    </div>
+      
+        <script src="scripts.js"></script>
+      </body>
+      
 
-    <script>
-        // Crear estrellas y estrellas brillantes
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const totalStars = 200;
-            const totalBrightStars = 15;
-            
-            // Crear pequeñas estrellas
-            for (let i = 0; i < totalStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                // Tamaño aleatorio entre 1px y 3px
-                const size = Math.random() * 2 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                
-                // Posición aleatoria
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                
-                // Opacidad aleatoria
-                star.style.opacity = Math.random() * 0.8 + 0.2;
-                
-                starsContainer.appendChild(star);
-            }
-            
-            // Crear estrellas brillantes
-            for (let i = 0; i < totalBrightStars; i++) {
-                const brightStar = document.createElement('div');
-                brightStar.className = 'bright-star';
-                
-                // Tamaño aleatorio entre 4px y 10px
-                const size = Math.random() * 6 + 4;
-                brightStar.style.width = `${size}px`;
-                brightStar.style.height = `${size}px`;
-                
-                // Posición aleatoria
-                brightStar.style.left = `${Math.random() * 100}%`;
-                brightStar.style.top = `${Math.random() * 50}%`;
-                
-                // Opacidad y brillo aleatorios
-                brightStar.style.opacity = Math.random() * 0.5 + 0.5;
-                brightStar.style.boxShadow = `0 0 ${Math.random() * 5 + 2}px white`;
-                
-                starsContainer.appendChild(brightStar);
-            }
-        }
-
-        // Animación de parpadeo para algunas estrellas
-        function animateStars() {
-            const stars = document.querySelectorAll('.star, .bright-star');
-            
-            stars.forEach(star => {
-                // Solo animar algunas estrellas al azar
-                if (Math.random() < 0.3) {
-                    const duration = Math.random() * 3 + 2;
-                    star.style.animation = `twinkle ${duration}s infinite alternate`;
-                }
-            });
-        }
-
-        // Crear estrellas cuando se carga la página
-        window.onload = function() {
-            createStars();
-            animateStars();
-            
-            // Agregar estilos para la animación de parpadeo
-            const styleSheet = document.createElement("style");
-            styleSheet.textContent = `
-                @keyframes twinkle {
-                    0% { opacity: 0.2; }
-                    100% { opacity: 1; }
-                }
-            `;
-            document.head.appendChild(styleSheet);
-        };
-    </script>
-</body>
 </html>
