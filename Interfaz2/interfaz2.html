@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz Móvil Espacial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #000;
+            color: white;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 8px solid #222;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to bottom, #000 0%, #050c20 60%, #0a1845 100%);
+        }
+        
+        .status-bar {
+            height: 44px;
+            padding: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+            position: relative;
+            z-index: 20;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-icons span {
+            margin-left: 5px;
+        }
+        
+        .space-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .earth-view {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(transparent, rgba(28, 61, 113, 0.5));
+            border-top: 1px solid rgba(101, 155, 214, 0.7);
+            z-index: 2;
+        }
+        
+        .europe-map {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            height: 20%;
+            opacity: 0.7;
+            z-index: 3;
+        }
+        
+        .central-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -65%);
+            width: 120px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        .logo-content {
+            background: linear-gradient(135deg, #ffffff, #ff3366, #acff00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .top-icons {
+            position: absolute;
+            top: 110px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: 5;
+        }
+        
+        .top-icon {
+            width: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .icon-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background-color: transparent;
+            border: 2px solid #3ac0ff;
+            color: #3ac0ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px #3ac0ff;
+        }
+        
+        .bottom-icons {
+            position: absolute;
+            bottom: 170px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: 5;
+        }
+        
+        .bottom-icon {
+            width: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .constellation {
+            position: absolute;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            transform-origin: 0 0;
+            z-index: 1;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            z-index: 20;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            font-size: 24px;
+            color: white;
+            z-index: 20;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .settings-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            z-index: 25;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="status-bar">
+            <div class="time">9:41</div>
+            <div class="status-icons">
+                <span>📶</span>
+                <span>🔋</span>
+            </div>
+        </div>
+        
+        <div class="settings-button">⚙️</div>
+        
+        <div id="space-background" class="space-bg"></div>
+        <div class="stars" id="stars"></div>
+        
+        <div class="back-button">←</div>
+        <div class="close-button">×</div>
+        
+        <div class="top-icons">
+            <div class="top-icon">
+                <div class="icon-img">
+                    <div style="color: #3ac0ff; font-size: 13px; text-align: center;">
+                        
+                        <a href="../Interfaz5/Interfaz5.html">📅<br>⏰</a>
+                    </div>
+                </div>
+            </div>
+            <div class="top-icon">
+                <div class="icon-img">
+                    <div style="color: #3ac0ff; font-size: 13px; text-align: center;">
+                        <a href="../Interfaz7/Interfaz7.html">📋<br>✉️</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="central-logo">
+            <div class="logo-content">K</div>
+        </div>
+        
+        <div class="bottom-icons">
+            <div class="bottom-icon">
+                <div class="icon-img" style="border-color: #ff55c7; box-shadow: 0 0 15px #ff55c7; color: #ff55c7;">
+                    <div style="font-size: 18px;">
+                        <a href="../Interfaz8/Interfaz8.html">👥</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-icon">
+                <div class="icon-img" style="border-color: #ff55c7; box-shadow: 0 0 15px #ff55c7; color: #ff55c7;">
+                    <div style="font-size: 18px;"><a href="../Interfaz6/Interfaz6.html">📱</a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function createStarsAndConstellations() {
+                const starsContainer = document.getElementById('stars');
+                const starCount = 150;
+                
+                // Crear estrellas
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    
+                    // Tamaño aleatorio
+                    const size = Math.random() * 2 + 0.5;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    
+                    // Posición aleatoria
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    
+                    // Retraso aleatorio en la animación
+                    star.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    starsContainer.appendChild(star);
+                }
+                
+                // Crear constelaciones
+                for (let i = 0; i < 8; i++) {
+                    const line = document.createElement('div');
+                    line.classList.add('constellation');
+                    
+                    const length = 30 + Math.random() * 70;
+                    const angle = Math.random() * 360;
+                    
+                    line.style.width = length + 'px';
+                    line.style.left = Math.random() * 80 + 10 + '%';
+                    line.style.top = Math.random() * 60 + 10 + '%';
+                    line.style.transform = `rotate(${angle}deg)`;
+                    
+                    starsContainer.appendChild(line);
+                    
+                    // Agregar algunas líneas conectadas
+                    if (Math.random() > 0.5) {
+                        const connectedLine = document.createElement('div');
+                        connectedLine.classList.add('constellation');
+                        
+                        const connectedLength = 20 + Math.random() * 40;
+                        const connectedAngle = angle + (Math.random() * 90 - 45);
+                        
+                        connectedLine.style.width = connectedLength + 'px';
+                        connectedLine.style.left = (parseFloat(line.style.left) + Math.cos(angle * Math.PI / 180) * length) + 'px';
+                        connectedLine.style.top = (parseFloat(line.style.top) + Math.sin(angle * Math.PI / 180) * length) + 'px';
+                        connectedLine.style.transform = `rotate(${connectedAngle}deg)`;
+                        
+                        starsContainer.appendChild(connectedLine);
+                    }
+                }
+            }
+            
+            function createEuropeMap() {
+                const map = document.getElementById('europe-map');
+                
+                // Simulamos el mapa de Europa con puntos de luz
+                for (let i = 0; i < 80; i++) {
+                    const dot = document.createElement('div');
+                    dot.style.position = 'absolute';
+                    dot.style.width = (Math.random() * 2 + 0.5) + 'px';
+                    dot.style.height = (Math.random() * 2 + 0.5) + 'px';
+                    dot.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                    dot.style.borderRadius = '50%';
+                    dot.style.left = 20 + Math.random() * 60 + '%';
+                    dot.style.top = 10 + Math.random() * 70 + '%';
+                    map.appendChild(dot);
+                }
+                
+                // Agregar algunas conexiones para simular ciudades conectadas
+                for (let i = 0; i < 15; i++) {
+                    const line = document.createElement('div');
+                    line.style.position = 'absolute';
+                    line.style.width = (10 + Math.random() * 40) + 'px';
+                    line.style.height = '1px';
+                    line.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                    line.style.left = 20 + Math.random() * 55 + '%';
+                    line.style.top = 20 + Math.random() * 60 + '%';
+                    line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    map.appendChild(line);
+                }
+            }
+            
+            function createSpaceBackground() {
+                const bg = document.getElementById('space-background');
+                
+                // Crear un degradado para simular el espacio
+                bg.style.background = "linear-gradient(to bottom, #000 0%, #050c20 70%, #081b4a 100%)";
+            }
+            
+            // Inicializar todo cuando se carga la página
+            document.addEventListener('DOMContentLoaded', function() {
+                createSpaceBackground();
+                createStarsAndConstellations();
+                createEuropeMap();
+                
+                // Hacer los botones interactivos
+                document.querySelectorAll('.icon-img').forEach(icon => {
+                    icon.addEventListener('click', function() {
+                        alert('Navegando a esta sección');
+                    });
+                    
+                    // Efecto hover
+                    icon.addEventListener('mouseover', function() {
+                        this.style.transform = 'scale(1.1)';
+                        this.style.transition = 'transform 0.3s ease';
+                    });
+                    
+                    icon.addEventListener('mouseout', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                });
+            });
+        </script>
+        
+        <div class="earth-view">
+            <div class="europe-map" id="europe-map"></div>
+        </div>
+    </div>
+
+
+</body>
+</html>
